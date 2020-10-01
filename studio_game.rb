@@ -1,15 +1,14 @@
-first_player_name = "larry"
-first_player_health = 60
-puts "#{first_player_name.capitalize} has a health of #{first_player_health}."
+def time
+    Time.new.strftime("%I:%M:%S")
+end
 
-second_player_name = "curly"
-second_player_health = 125
-puts "#{second_player_name.capitalize} has a health of #{second_player_health}."
+def say_hello(name, health=100)
+    "I'm #{name.capitalize} with a health of #{health} as of #{time}."
+end
 
-third_player_name = "moe"
-third_player_health = 100
-puts "#{third_player_name.capitalize} has a health of #{third_player_health}."
+puts say_hello("larry", 60)
+puts say_hello("curly", 125)
+puts say_hello("moe")
+puts say_hello("shemp", 90)
 
-fourth_player_name = "shemp"
-fourth_player_health = 90
-puts "#{fourth_player_name.capitalize} has a health of #{fourth_player_health}."
+puts time
