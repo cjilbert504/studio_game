@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/studio_game/player'
+require_relative '../lib/studio_game/game'
+require_relative '../lib/studio_game/clumsy_player'
+
+game = StudioGame::Game.new("Knuckleheads")
+default_player_file = File.join(File.dirname(__FILE__), 'players.csv')
+game.load_players(ARGV.shift || default_player_file)
+
+loop do 
+    puts "\nHow many game rounds? ('quit' to exit)"
+    answer = gets.chomp.downcase
+    case answer
+    when /^\d+$/
+        game.play(answer.to_i) do
+            game.total_points >= 2000
+        end
+    when "quit", "exit"
+        game.print_stats
+        break
+    else
+        puts "Please enter a number or 'quit'"
+    end
+end
+
+game.save_high_scores

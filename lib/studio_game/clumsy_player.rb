@@ -1,22 +1,23 @@
 require_relative "player"
 
-class ClumsyPlayer < Player
-    attr_reader :boost_factor
-    
-    def initialize(name, health=100, boost_factor=1)
-      super(name, health)
-      @boost_factor = boost_factor
-    end
-    
-    def w00t
-      @boost_factor.times { super }
-    end
+module StudioGame
+  class ClumsyPlayer < Player
+      attr_reader :boost_factor
 
-    def found_treasure(treasure)
-        damaged_treasure = Treasure.new(treasure.name, treasure.points / 2.0)
-        super(damaged_treasure)
-    end
+      def initialize(name, health=100, boost_factor=1)
+        super(name, health)
+        @boost_factor = boost_factor
+      end
 
+      def w00t
+        @boost_factor.times { super }
+      end
+
+      def found_treasure(treasure)
+          damaged_treasure = Treasure.new(treasure.name, treasure.points / 2.0)
+          super(damaged_treasure)
+      end
+  end
 end
 
 if __FILE__ == $0
